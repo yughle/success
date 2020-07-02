@@ -56,3 +56,11 @@ class Log:
 
     def error(self, message):
         self.output_logs("error", message)
+
+
+if __name__ == '__main__':
+    log=Log()
+    log.debug("hjkhkj")
+    log.info("dsd")
+    log.warning("dfd")
+    log.error("hjkhjk")
