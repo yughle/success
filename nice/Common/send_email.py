@@ -9,23 +9,30 @@ from email.mime.text import MIMEText
 
 def send():
     smtpserver="smtp.qq.com"
-    user="895995165@qq.com"
-    password="upuzyjeagynkbbfj"
+    user="xxx@qq.com"
+    password="xxxxx"
     #发送邮箱
-    sender="895995165@qq.com"
+    sender="xxx@qq.com"
     #接收邮箱
-    receiver="895995165@qq.com"
+    receiver="xxx@qq.com"
     #邮件正文
-    msg=MIMEText("测试1236")
+    subject = 'Python SMTP 邮件测试'
+    mail_msg = """
+    链接
+    """
+    msg= MIMEText(mail_msg, 'html', 'utf-8')
     msg["subject"]="测试666666"
     msg["from"]=sender
     msg["to"]=receiver
     #连接发送邮件
-    smtp=smtplib.SMTP_SSL(smtpserver,465)
-    smtp.login(user,password)
-    smtp.sendmail(sender,receiver,msg.as_string())
-    smtp.quit()
+    try:
+        smtp=smtplib.SMTP_SSL(smtpserver,465)
+        smtp.login(user,password)
+        smtp.sendmail(sender,receiver,msg.as_string())
+        smtp.quit()
+    except smtplib.SMTPException:
+        print("发送失败")
 
-send()
+
 
 
