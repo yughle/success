@@ -36,6 +36,7 @@ class Api_test(unittest.TestCase):
                 print(res)
         except Exception as e:
             Log().error("报错，错误信息%s" % e)
+
         Do_excel().write_back(item["case_id"], res["error_code"], str(res))
         self.assertEqual(res["error_code"], 0)
         return res
