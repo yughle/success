@@ -5,6 +5,8 @@
 # @File    : send_email.py
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.header import Header
 
 
 def send():
