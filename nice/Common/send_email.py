@@ -12,7 +12,7 @@ from email.header import Header
 def send():
     smtpserver="smtp.qq.com"
     user="xxx@qq.com"
-    password="xxxxx"
+    password=""
     #发送邮箱
     sender="xxx@qq.com"
     #接收邮箱
@@ -32,9 +32,6 @@ def send():
         smtp.login(user,password)
         smtp.sendmail(sender,receiver,msg.as_string())
         smtp.quit()
-    except smtplib.SMTPException:
+    except smtplib.SMTPException as e:
         print("发送失败")
-
-
-
-
+        raise e

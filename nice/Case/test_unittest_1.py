@@ -9,7 +9,6 @@ import unittest, ddt, requests
 from Common.read_excel import Do_excel
 from Common.operate_logs import Log
 
-
 @ddt.ddt
 class Api_test(unittest.TestCase):
     """
@@ -30,14 +29,23 @@ class Api_test(unittest.TestCase):
         try:
             if item["method"] == "get":
                 res = requests.get(url, data).json()
-                print(res)
+                Log().info("请求成功")
+
             elif item["method"] == "post":
                 res = requests.post(url, data).json()
-                print(res)
-        except Exception as e:
-            Log().error("报错，错误信息%s" % e)
+                Log().info("请求成功")
 
-        Do_excel().write_back(item["case_id"], res["error_code"], str(res))
+        except Exception as e:
+            Log().error("请求失败,错误:%s" % e)
+            raise e
+
+        try:
+            Do_excel().write_back(item["case_id"], res["error_code"], str(res))
+            Log().info("写入成功")
+        except Exception as e:
+            Log().info("写入失败,原因{0}".format(e))
+            raise e
+
         self.assertEqual(res["error_code"], 0)
         return res
 
