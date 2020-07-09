@@ -59,4 +59,8 @@ class Log:
 
 
 if __name__ == '__main__':
-    Log().debug("hjh")
+    log=Log()
+    log.debug("hjkhkj")
+    log.info("dsd")
+    log.warning("dfd")
+    log.error("hjkhjk")
