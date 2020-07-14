@@ -12,3 +12,4 @@ def read():
     file=os.path.join(filename,"Config\config.ini")
     config=configparser.ConfigParser()
     config.read(file,encoding="utf-8")
+

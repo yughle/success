@@ -58,6 +58,7 @@ class Log:
         self.output_logs("error", message)
 
 
+
 if __name__ == '__main__':
     log=Log()
     log.debug("hjkhkj")

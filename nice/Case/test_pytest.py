@@ -51,5 +51,6 @@ class Test_api:
 
         assert res["error_code"] == 0
         return res
+
 if __name__ == '__main__':
     pytest.main()
