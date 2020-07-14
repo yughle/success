@@ -22,17 +22,14 @@ class Api_test(unittest.TestCase):
     def tearDown(self):
         pass
 
-    @ddt.data(*Do_excel().read())
-
-    def test_1(self, item):
-        url, data = item["url"], eval(item["data"])
+    def get_request(self,url, data, method, case_id):
         try:
-            if item["method"] == "get":
-                res = requests.get(url, data).json()
+            if method == "get":
+                self.res = requests.get(url, data).json()
                 Log().info("请求成功")
 
-            elif item["method"] == "post":
-                res = requests.post(url, data).json()
+            elif method == "post":
+                self.res = requests.post(url, data).json()
                 Log().info("请求成功")
 
         except Exception as e:
@@ -40,13 +37,20 @@ class Api_test(unittest.TestCase):
             raise e
 
         try:
-            Do_excel().write_back(item["case_id"], res["error_code"], str(res))
+            Do_excel().write_back(case_id, self.res["error_code"], str(self.res))
             Log().info("写入成功")
         except Exception as e:
             Log().info("写入失败,原因{0}".format(e))
             raise e
 
-        self.assertEqual(res["error_code"], 0)
-        return res
+    @ddt.data(*Do_excel().read())
+
+    def test_1(self, item):
+        url, data = item["url"], eval(item["data"])
+        method,case_id=item["method"],item["case_id"]
+        self.get_request(url,data,method,case_id)
+
+        self.assertEqual(self.res["error_code"], 0)
+
 
 
