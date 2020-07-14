@@ -35,7 +35,7 @@ class Do_excel:
                 save_dict["data"] = self.sheet.cell(i, 4).value
                 save_dict["title"] = self.sheet.cell(i, 5).value
                 save_list.append(save_dict)
-                Log().info("读取内容成功")
+            Log().info("读取内容成功")
         except Exception as e:
             Log().error("读取内容失败，错误原因:{}".format(e))
             raise e

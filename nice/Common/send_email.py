@@ -35,3 +35,4 @@ def send():
     except smtplib.SMTPException as e:
         print("发送失败")
         raise e
+        open()
